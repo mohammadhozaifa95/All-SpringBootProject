@@ -12,4 +12,7 @@ public interface StudentServiceIn {
 	public Student getById(Integer id);
 	public Student Update(Integer id,Student neWStudent);
 	public void delete(Integer id);
+	
+	public void deleteAll();
 }
+

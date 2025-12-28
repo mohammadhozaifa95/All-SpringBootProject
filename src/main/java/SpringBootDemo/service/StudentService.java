@@ -56,4 +56,10 @@ private StudRepo repo;
 		
 	}
 
+	@Override
+	public void deleteAll() {
+		repo.deleteAll();
+		
+	}
+
 }

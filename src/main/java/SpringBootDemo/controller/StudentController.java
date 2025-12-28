@@ -1,5 +1,6 @@
 package SpringBootDemo.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import SpringBootDemo.ServiceIn.StudentServiceIn;
 import SpringBootDemo.model.Student;
+import tools.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("/api")
@@ -22,8 +26,12 @@ public class StudentController {
 private StudentServiceIn savedata;
 
 @PostMapping("/save")
-public Student save(@RequestBody Student save) {
-return savedata.saveData(save);
+public Student save(@RequestPart String save,@RequestPart MultipartFile image,@RequestPart MultipartFile pdf) throws IOException {
+	  ObjectMapper mapper=new ObjectMapper();
+	  Student value = mapper.readValue(save, Student.class);
+	value.setImage(image.getBytes());
+	value.setPdf(pdf.getBytes());
+return savedata.saveData(value);
 	
 }
 @GetMapping("/getAll")
@@ -44,6 +52,10 @@ public Student Update(@PathVariable Integer id,@RequestBody Student newstude) {
 public void delete(@PathVariable Integer id) {
 	savedata.delete(id);
 	
+}
+@DeleteMapping("/All")
+public void deleteAll() {
+	savedata.deleteAll();
 }
 }
 
