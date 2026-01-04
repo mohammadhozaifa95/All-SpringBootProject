@@ -19,6 +19,8 @@ public class EmpService implements EmpServiceIn {
 		emp.add(new Employee(2, "Mohammad", "Sakinaka","khanmod@gmail.com","huz123",1232.00,18));
 		emp.add(new Employee(3, "Mohammad", "Sakinaka","khanmod@gmail.com","huz123",1232.00,18));
 	}
+	
+	//public void pay(){}
 
 	@Override
 	public List<Employee> getAll() {
@@ -35,8 +37,12 @@ public class EmpService implements EmpServiceIn {
 
 	@Override
 	public Employee getById(int id) {
+		
+		
+		
 		// TODO Auto-generated method stub
 		for (Employee employee : emp) {
+			
 			if (employee.getId() == id) {
 				return employee;
 			}

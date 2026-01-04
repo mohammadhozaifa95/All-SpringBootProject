@@ -28,6 +28,7 @@ private StudRepo repo;
 
 	@Override
 	public Student getById(Integer id) {
+		System.out.println("getAll data");
 		// TODO Auto-generated method stub
 		return repo.findById(id).orElseThrow(()-> new RuntimeException("ID NOT FOUND"));
 

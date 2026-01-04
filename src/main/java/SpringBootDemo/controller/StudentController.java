@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,11 +40,12 @@ return savedata.saveData(value);
 public List<Student> getAll(){
 	return savedata.gatAll();
 	
-}
-@GetMapping("/get/{id}")
-public Student findById(@PathVariable Integer id) {	
-return savedata.getById(id);
-}
+}//
+   @GetMapping("/get/{id}")
+  public ResponseEntity<byte[]> findById(@PathVariable Integer id) {	
+  Student byId = savedata.getById(id);
+  return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(byId.getImage());
+  }
 @PutMapping("/updte/{id}")
 public Student Update(@PathVariable Integer id,@RequestBody Student newstude) {
 	return savedata.Update(id, newstude);

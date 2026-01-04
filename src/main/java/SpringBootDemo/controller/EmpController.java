@@ -24,6 +24,7 @@ private  EmpServiceIn  empServiceIn;
 //Get All data Form List
 @GetMapping("/getAll")
 public List<Employee> getAll(){
+	System.out.println("Controller method");
 return empServiceIn.getAll();
 	
 }
@@ -35,6 +36,9 @@ return empServiceIn.saveEmp(employee);
 
 @GetMapping("/getById/{id}")
 public Employee getById(@PathVariable("id") int id) {
+	
+	String s=null;
+	System.out.println(s.length());
 return empServiceIn.getById(id);
 	
 }
